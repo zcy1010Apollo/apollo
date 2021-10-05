@@ -90,6 +90,23 @@ public class ConfigUtil {
   }
 
   /**
+   * Get the app label for the current application.
+   *
+   * @return the app label or ConfigConsts.NO_APPLABEL_PLACEHOLDER if app label is not available
+   */
+  public String getAppLabel() {
+    String appLabel = Foundation.app().getAppLabel();
+    if (Strings.isNullOrEmpty(appLabel)) {
+      appLabel = ConfigConsts.NO_APPLABEL_PLACEHOLDER;
+      if (warnLogRateLimiter.tryAcquire()) {
+        logger.warn(
+            "app.label is not set, please make sure it is set in classpath:/META-INF/app.properties, now apollo will only load public namespace configurations!");
+      }
+    }
+    return appLabel;
+  }
+
+  /**
    * Get the access key secret for the current application.
    *
    * @return the current access key secret, null if there is no such secret.
