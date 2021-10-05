@@ -38,6 +38,7 @@ import com.ctrip.framework.apollo.util.ExceptionUtil;
 import com.ctrip.framework.apollo.util.http.HttpRequest;
 import com.ctrip.framework.apollo.util.http.HttpResponse;
 import com.ctrip.framework.apollo.util.http.HttpClient;
+import com.ctrip.framework.foundation.Foundation;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -308,6 +309,11 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
     String localIp = m_configUtil.getLocalIp();
     if (!Strings.isNullOrEmpty(localIp)) {
       queryParams.put("ip", queryParamEscaper.escape(localIp));
+    }
+
+    String label= Foundation.app().getAppLabel();
+    if(!Strings.isNullOrEmpty(label)){
+      queryParams.put("label", queryParamEscaper.escape(label));
     }
 
     if (remoteMessages != null) {
