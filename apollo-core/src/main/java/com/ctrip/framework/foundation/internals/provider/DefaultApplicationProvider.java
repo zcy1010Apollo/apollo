@@ -158,9 +158,9 @@ public class DefaultApplicationProvider implements ApplicationProvider {
 
     //2. Try to get app label from OS environment variable
     m_appLabel = System.getenv(ApolloClientSystemConsts.APP_LABEL_ENVIRONMENT_VARIABLES);
-    if (!Utils.isBlank(m_appId)) {
-      m_appId = m_appId.trim();
-      logger.info("App ID is set to {} by APP_ID property from OS environment variable", m_appId);
+    if (!Utils.isBlank(m_appLabel)) {
+      m_appLabel = m_appLabel.trim();
+      logger.info("App Label is set to {} by APP_LABEL property from OS environment variable", m_appLabel);
       return;
     }
 

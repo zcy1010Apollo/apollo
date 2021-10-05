@@ -134,8 +134,8 @@ public class GrayReleaseRulesHolder implements ReleaseMessageListener, Initializ
     }
   }
 
-  public Long findReleaseIdFromGrayReleaseRule(String clientAppId, String clientIp, String
-      configAppId, String clientLabel, String configCluster, String configNamespaceName) {
+  public Long findReleaseIdFromGrayReleaseRule(String clientAppId, String clientIp, String clientLabel, String
+      configAppId, String configCluster, String configNamespaceName) {
     String key = assembleGrayReleaseRuleKey(configAppId, configCluster, configNamespaceName);
     if (!grayReleaseRuleCache.containsKey(key)) {
       return null;
@@ -147,7 +147,7 @@ public class GrayReleaseRulesHolder implements ReleaseMessageListener, Initializ
       if (rule.getBranchStatus() != NamespaceBranchStatus.ACTIVE) {
         continue;
       }
-      if (rule.matches(clientAppId, clientIp)) {
+      if (rule.matches(clientAppId, clientIp, clientLabel)) {
         return rule.getReleaseId();
       }
     }

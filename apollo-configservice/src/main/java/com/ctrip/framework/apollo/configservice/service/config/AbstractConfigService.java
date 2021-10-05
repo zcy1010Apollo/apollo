@@ -65,6 +65,7 @@ public abstract class AbstractConfigService implements ConfigService {
    *
    * @param clientAppId the client's app id
    * @param clientIp the client ip
+   * @param clientLabel the client label
    * @param configAppId the requested config's app id
    * @param configClusterName the requested config's cluster name
    * @param configNamespace the requested config's namespace name
@@ -73,7 +74,7 @@ public abstract class AbstractConfigService implements ConfigService {
    */
   private Release findRelease(String clientAppId, String clientIp, String clientLabel, String configAppId, String configClusterName,
       String configNamespace, ApolloNotificationMessages clientMessages) {
-    Long grayReleaseId = grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule(clientAppId, clientIp,clientLabel, configAppId,
+    Long grayReleaseId = grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule(clientAppId, clientIp, clientLabel, configAppId,
         configClusterName, configNamespace);
 
     Release release = null;

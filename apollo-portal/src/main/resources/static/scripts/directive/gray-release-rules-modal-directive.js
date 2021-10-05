@@ -32,8 +32,10 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
             scope.completeEditBtnDisable = false;
 
             scope.batchAddIPs = batchAddIPs;
+            scope.batchAddLabels = batchAddLabels;
             scope.addRules = addRules;
             scope.removeRule = removeRule;
+            scope.removeRuleLabel = removeRuleLabel;
             scope.completeEditItem = completeEditItem;
             scope.cancelEditItem = cancelEditItem;
             scope.initSelectIps = initSelectIps;
@@ -84,6 +86,13 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                 addRuleItemIP(branch, newIPs.split(','));
             }
 
+            function batchAddLabels(branch, newLabels) {
+                if (!newLabels) {
+                    return;
+                }
+                addRuleItemLabel(branch, newLabels.split(','));
+            }
+
             function addRuleItemIP(branch, newIps) {
                 var oldIPs = branch.editingRuleItem.draftIpList;
                 if (newIps && newIps.length > 0) {
@@ -103,12 +112,37 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                 });
 
             }
-
+            function addRuleItemLabel(branch, newLabels) {
+                var oldLabels = branch.editingRuleItem.draftLabelList;
+                if (newLabels && newLabels.length > 0) {
+                    newLabels.forEach(function (Label) {
+                        if (oldLabels.indexOf(Label) < 0) {
+                            oldLabels.push(Label);
+                        }
+                    })
+                }
+                //remove Label:all
+                oldLabels.forEach(function (Label, index) {
+                    if (Label == "*") {
+                        oldLabels.splice(index, 1);
+                    }
+                });
+            }
             function removeRule(ruleItem, IP) {
 
                 ruleItem.draftIpList.forEach(function (existedRule, index) {
                     if (existedRule == IP) {
                         ruleItem.draftIpList.splice(index, 1);
+                    }
+                })
+
+            }
+
+            function removeRuleLabel(ruleItem, Label) {
+
+                ruleItem.draftLabelList.forEach(function (existedRule, index) {
+                    if (existedRule == Label) {
+                        ruleItem.draftLabelList.splice(index, 1);
                     }
                 })
 
@@ -144,9 +178,11 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                         return;
                     } else {
                         branch.editingRuleItem.clientIpList = branch.editingRuleItem.draftIpList;
+                        branch.editingRuleItem.clientLabelList = branch.editingRuleItem.draftLabelList;
                     }
                 } else {
                     branch.editingRuleItem.clientIpList = ['*'];
+                    branch.editingRuleItem.clientLabelList = ['*'];
                 }
 
                 if (!branch.rules) {
@@ -168,6 +204,7 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
 
                 branch.editingRuleItem = undefined;
                 scope.toAddIPs = '';
+                scope.toAddLabels = '';
 
                 AppUtil.hideModal('#rulesModal');
 
@@ -182,6 +219,7 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                 branch.editingRuleItem.isEdit = false;
                 branch.editingRuleItem = undefined;
                 scope.toAddIPs = '';
+                scope.toAddLabels = '';
                 AppUtil.hideModal('#rulesModal');
             }
 

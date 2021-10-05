@@ -311,7 +311,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
       queryParams.put("ip", queryParamEscaper.escape(localIp));
     }
 
-    String label= Foundation.app().getAppLabel();
+    String label=m_configUtil.getAppLabel();
     if(!Strings.isNullOrEmpty(label)){
       queryParams.put("label", queryParamEscaper.escape(label));
     }
