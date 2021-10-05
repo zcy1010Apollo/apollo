@@ -172,8 +172,8 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                 }
 
                 if (!branch.editingRuleItem.ApplyToAllInstances) {
-                    if (branch.editingRuleItem.draftIpList.length == 0) {
-                        toastr.error($translate.instant('RulesModal.IpListCanNotBeNull'));
+                    if ((branch.editingRuleItem.draftIpList.length == 0)&&(branch.editingRuleItem.draftLabelList.length == 0)) {
+                        toastr.error($translate.instant('RulesModal.RuleListCanNotBeNull'));
                         scope.completeEditBtnDisable = false;
                         return;
                     } else {

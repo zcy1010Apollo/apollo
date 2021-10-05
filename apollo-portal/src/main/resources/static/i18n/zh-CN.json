@@ -736,7 +736,7 @@
   "RulesModal.InvalidIp": "不合法的IP地址: '{{ip}}'",
   "RulesModal.GrayscaleAppIdCanNotBeNull": "灰度的AppId不能为空",
   "RulesModal.AppIdExistsRule": "已经存在AppId='{{appId}}'的规则",
-  "RulesModal.IpListCanNotBeNull": "IP列表不能为空",
+  "RulesModal.RuleListCanNotBeNull": "规则列表不能为空",
   "RulesModal.LabelListCanNotBeNull": "标签列表不能为空",
   "ItemModal.KeyExists": "key='{{key}}' 已存在",
   "ItemModal.AddedTips": "添加成功,如需生效请发布",

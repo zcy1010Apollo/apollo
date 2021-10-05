@@ -736,7 +736,7 @@
   "RulesModal.InvalidIp": "Illegal IP Address: '{{ip}}'",
   "RulesModal.GrayscaleAppIdCanNotBeNull": "Grayscale AppId cannot be empty",
   "RulesModal.AppIdExistsRule": "Rules already exist for AppId='{{appId}}'",
-  "RulesModal.IpListCanNotBeNull": "IP list cannot be empty",
+  "RulesModal.RuleListCanNotBeNull": "Rule list cannot be empty",
   "RulesModal.LabelListCanNotBeNull": "Label list cannot be empty",
   "ItemModal.KeyExists": "Key='{{key}}' already exists",
   "ItemModal.AddedTips": "Add Successfully. need to release configuration to take effect",

@@ -57,9 +57,6 @@
                     </div>
                 </div>
 
-
-
-
                 <div class="form-group" ng -show="!branch.editingRuleItem.ApplyToAllInstances">
                     <label class="control-label col-md-3 text-right">
                         <apollorequiredfield></apollorequiredfield>
@@ -90,17 +87,21 @@
                             <button class="btn-default btn add-rule" ng-click="batchAddIPs(branch, toAddIPs)">
                                 {{'Component.GrayscalePublishRule.Add' | translate }}
                             </button>
-                            <!--                            <div class="form-group">-->
-                            <!--                                <textarea class="form-control" ng-model="toAddLabels" rows="1"-->
-                            <!--                                          placeholder="{{'Component.GrayscalePublishRule.EnterLabelTips' | translate }}"></textarea>-->
-                            <!--                            </div>-->
-                            <!--                            <button class="btn-default btn add-rule" ng-click="batchAddLabels(branch, toAddLabels)">-->
-                            <!--                                {{'Component.GrayscalePublishRule.Add' | translate }}-->
-                            <!--                            </button>-->
                         </div>
                     </div>
                 </div>
-                <!--                我写的-->
+                <div class="form-group" ng-show="!branch.editingRuleItem.ApplyToAllInstances">
+                    <div class="col-md-offset-1 col-md-10 item-container">
+                        <section class="btn-group item-info" ng-repeat="ip in branch.editingRuleItem.draftIpList">
+                            <button type="button" class="btn btn-default" ng-bind="ip"></button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    ng-click="removeRule(branch.editingRuleItem, ip)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+
                 <div class="form-group" ng -show="!branch.editingRuleItem.ApplyToAllInstances">
                     <label class="control-label col-md-3 text-right">
                         <apollorequiredfield></apollorequiredfield>
@@ -118,18 +119,8 @@
                         </div>
                     </div>
                 </div>
-                <!--                我写的-->
 
                 <div class="form-group" ng-show="!branch.editingRuleItem.ApplyToAllInstances">
-                    <div class="col-md-offset-1 col-md-10 item-container">
-                        <section class="btn-group item-info" ng-repeat="ip in branch.editingRuleItem.draftIpList">
-                            <button type="button" class="btn btn-default" ng-bind="ip"></button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                    ng-click="removeRule(branch.editingRuleItem, ip)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </section>
-                    </div>
                     <div class="col-md-offset-1 col-md-10 item-container">
                         <section class="btn-group item-info" ng-repeat="label in branch.editingRuleItem.draftLabelList">
                             <button type="button" class="btn btn-default" ng-bind="label"></button>
