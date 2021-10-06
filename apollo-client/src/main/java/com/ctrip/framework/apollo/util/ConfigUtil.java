@@ -95,15 +95,7 @@ public class ConfigUtil {
    * @return the app label or ConfigConsts.NO_APPLABEL_PLACEHOLDER if app label is not available
    */
   public String getAppLabel() {
-    String appLabel = Foundation.app().getAppLabel();
-    if (Strings.isNullOrEmpty(appLabel)) {
-      appLabel = ConfigConsts.NO_APPLABEL_PLACEHOLDER;
-      if (warnLogRateLimiter.tryAcquire()) {
-        logger.warn(
-            "app.label is not set, please make sure it is set in classpath:/META-INF/app.properties, now apollo will only load public namespace configurations!");
-      }
-    }
-    return appLabel;
+    return Foundation.app().getAppLabel();
   }
 
   /**

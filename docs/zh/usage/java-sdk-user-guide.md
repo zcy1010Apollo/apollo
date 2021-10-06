@@ -11,7 +11,7 @@
 >注：对于Apollo客户端，如果有需要的话，可以做少量代码修改来降级到Java 1.6，详细信息可以参考[Issue 483](https://github.com/ctripcorp/apollo/issues/483)
 
 ## 1.2 必选设置
-Apollo客户端依赖于`AppId`，`AppLabel`，`Apollo Meta Server`等环境信息来工作，所以请确保阅读下面的说明并且做正确的配置：
+Apollo客户端依赖于`AppId`，`Apollo Meta Server`等环境信息来工作，所以请确保阅读下面的说明并且做正确的配置：
 
 ### 1.2.1 AppId
 
@@ -55,51 +55,8 @@ app.id=YOUR-APP-ID
 ![app-id-location](https://raw.githubusercontent.com/ctripcorp/apollo/master/apollo-client/doc/pic/app-id-location.png)
 
 > 注：app.id是用来标识应用身份的唯一id，格式为string。
-> 
-### 1.2.2 AppLabel
 
-AppLabel是应用的标签信息，是从服务端获取配置的一个重要信息，用于灰度规则的配置。
-
-有以下几种方式设置，按照优先级从高到低分别为：
-
-1. System Property
-
-Apollo 1.9.2+支持通过System Property传入app.label信息，如
-
-```bash
--Dapp.label=YOUR-APP-LABEL
-```
-
-2. 操作系统的System Environment
-
-Apollo 1.9.2+支持通过操作系统的System Environment `APP_LABEL`来传入app.label信息，如
-
-```bash
-APP_LABEL=YOUR-APP-LABEL
-```
-
-3. Spring Boot application.properties
-
-Apollo 1.9.2+支持通过Spring Boot的application.properties文件配置，如
-
-```properties
-app.label=YOUR-APP-LABEL
-```
-
-> 该配置方式不适用于多个war包部署在同一个tomcat的使用场景
-
-4. app.properties
-
-确保classpath:/META-INF/app.properties文件存在，并且其中内容形如：
->app.label=YOUR-APP-LABEL
-
-文件位置参考如下：
-
-![app-id-location](https://raw.githubusercontent.com/ctripcorp/apollo/master/apollo-client/doc/pic/app-id-location.png)
-
-> 注：app.label是用来标识应用身份的标签，格式为string。
-
-### 1.2.3 Apollo Meta Server
+### 1.2.2 Apollo Meta Server
 
 Apollo支持应用在不同的环境有不同的配置，所以需要在运行提供给Apollo客户端当前环境的[Apollo Meta Server](zh/design/apollo-design?id=_133-meta-server)信息。默认情况下，meta server和config service是部署在同一个JVM进程，所以meta server的地址就是config service的地址。
 
@@ -145,7 +102,7 @@ pro.meta=http://apollo.xxx.com
 
 > 如果通过以上各种手段都无法获取到Meta Server地址，Apollo最终会fallback到`http://apollo.meta`作为Meta Server地址
 
-#### 1.2.3.1 自定义Apollo Meta Server地址定位逻辑
+#### 1.2.2.1 自定义Apollo Meta Server地址定位逻辑
 
 在1.0.0版本中，Apollo提供了[MetaServerProvider SPI](https://github.com/ctripcorp/apollo/blob/master/apollo-core/src/main/java/com/ctrip/framework/apollo/core/spi/MetaServerProvider.java)，用户可以注入自己的MetaServerProvider来自定义Meta Server地址定位逻辑。
 
@@ -157,7 +114,7 @@ pro.meta=http://apollo.xxx.com
 
 MetaServerProvider的实现可以参考[LegacyMetaServerProvider](https://github.com/ctripcorp/apollo/blob/master/apollo-core/src/main/java/com/ctrip/framework/apollo/core/internals/LegacyMetaServerProvider.java)和[DefaultMetaServerProvider](https://github.com/ctripcorp/apollo/blob/master/apollo-client/src/main/java/com/ctrip/framework/apollo/internals/DefaultMetaServerProvider.java)。
 
-#### 1.2.3.2 跳过Apollo Meta Server服务发现
+#### 1.2.2.2 跳过Apollo Meta Server服务发现
 
 > 适用于apollo-client 0.11.0及以上版本
 
@@ -183,7 +140,7 @@ MetaServerProvider的实现可以参考[LegacyMetaServerProvider](https://github
      * 对于Mac/Linux，默认文件位置为`/opt/settings/server.properties`
     * 对于Windows，默认文件位置为`C:\opt\settings\server.properties`
 
-### 1.2.4 本地缓存路径
+### 1.2.3 本地缓存路径
 Apollo客户端会把从服务端获取到的配置在本地文件系统缓存一份，用于在遇到服务不可用，或网络不通的时候，依然能从本地恢复配置，不影响应用正常运行。
 
 本地缓存路径默认位于以下路径，所以请确保`/opt/data`或`C:\opt\data\`目录存在，且应用有读写权限。
@@ -205,7 +162,7 @@ request.timeout=2000
 batch=2000
 ```
 
-#### 1.2.4.1 自定义缓存路径
+#### 1.2.3.1 自定义缓存路径
 
 1.0.0版本开始支持以下方式自定义缓存路径，按照优先级从高到低分别为：
 
@@ -226,9 +183,9 @@ batch=2000
 
 > 注：本地缓存路径也可用于容灾目录，如果应用在所有config service都挂掉的情况下需要扩容，那么也可以先把配置从已有机器上的缓存路径复制到新机器上的相同缓存路径
 
-### 1.2.5 可选设置
+### 1.2.4 可选设置
 
-#### 1.2.5.1 Environment
+#### 1.2.4.1 Environment
 
 Environment可以通过以下3种方式的任意一个配置：
 
@@ -264,7 +221,7 @@ env=DEV
 
 更多环境定义，可以参考[Env.java](https://github.com/ctripcorp/apollo/blob/master/apollo-core/src/main/java/com/ctrip/framework/apollo/core/enums/Env.java)
 
-#### 1.2.5.2 Cluster（集群）
+#### 1.2.4.2 Cluster（集群）
 
 Apollo支持配置按照集群划分，也就是说对于一个appId和一个环境，对不同的集群可以有不同的配置。
 
@@ -308,7 +265,7 @@ Apollo支持配置按照集群划分，也就是说对于一个appId和一个环
 4. 如果`apollo.cluster`和`idc`都没有指定：
     * 我们会从默认的集群（`default`）加载配置
 
-#### 1.2.5.3 设置内存中的配置项是否保持和页面上的顺序一致
+#### 1.2.4.3 设置内存中的配置项是否保持和页面上的顺序一致
 
 > 适用于1.6.0及以上版本
 
@@ -325,7 +282,7 @@ Apollo支持配置按照集群划分，也就是说对于一个appId和一个环
 3. 通过`app.properties`配置文件
     * 可以在`classpath:/META-INF/app.properties`指定`apollo.property.order.enable=true`
 
-#### 1.2.5.4 配置访问密钥
+#### 1.2.4.4 配置访问密钥
 
 > 适用于1.6.0及以上版本
 
@@ -345,7 +302,7 @@ Apollo从1.6.0版本开始增加访问密钥机制，从而只有经过身份验
 4. 通过`app.properties`配置文件
     * 可以在`classpath:/META-INF/app.properties`指定`apollo.access-key.secret=1cf998c4e2ad4704b45a98a509d15719`(1.9.0+) 或者 `apollo.accesskey.secret=1cf998c4e2ad4704b45a98a509d15719`(1.9.0之前)
 
-#### 1.2.5.5 自定义server.properties路径
+#### 1.2.4.5 自定义server.properties路径
 
 > 适用于1.8.0及以上版本
 
@@ -360,7 +317,7 @@ Apollo从1.6.0版本开始增加访问密钥机制，从而只有经过身份验
    * 可以通过操作系统的System Environment `APOLLO_PATH_SERVER_PROPERTIES`来指定
    * 注意key为全大写，且中间是`_`分隔
 
-#### 1.2.5.6 开启`propertyNames`缓存，在大量配置场景下可以显著改善启动速度
+#### 1.2.4.6 开启`propertyNames`缓存，在大量配置场景下可以显著改善启动速度
 
 > 适用于1.9.0及以上版本
 
@@ -379,6 +336,49 @@ Apollo从1.6.0版本开始增加访问密钥机制，从而只有经过身份验
    * 可以在Spring Boot的`application.properties`或`bootstrap.properties`中指定`apollo.property.names.cache.enable=true`
 4. 通过`app.properties`配置文件
    * 可以在`classpath:/META-INF/app.properties`指定`apollo.property.names.cache.enable=true`
+   
+#### 1.2.4.7 ApolloLabel
+
+ApolloLabel是应用的标签信息，是从服务端获取配置的一个重要信息，用于灰度规则的配置。
+
+有以下几种方式设置，按照优先级从高到低分别为：
+
+1. System Property
+
+Apollo 1.9.2+支持通过System Property传入apollo.label信息，如
+
+```bash
+-Dapollo.label=YOUR-APOLLO-LABEL
+```
+
+2. 操作系统的System Environment
+
+Apollo 1.9.2+支持通过操作系统的System Environment `APP_LABEL`来传入apollo.label信息，如
+
+```bash
+APOLLO_LABEL=YOUR-APOLLO-LABEL
+```
+
+3. Spring Boot application.properties
+
+Apollo 1.9.2+支持通过Spring Boot的application.properties文件配置，如
+
+```properties
+apollo.label=YOUR-APOLLO-LABEL
+```
+
+> 该配置方式不适用于多个war包部署在同一个tomcat的使用场景
+
+4. app.properties
+
+确保classpath:/META-INF/app.properties文件存在，并且其中内容形如：
+>apollo.label=YOUR-APOLLO-LABEL
+
+文件位置参考如下：
+
+![app-id-location](https://raw.githubusercontent.com/ctripcorp/apollo/master/apollo-client/doc/pic/app-id-location.png)
+
+> 注：apollo.label是用来标识应用身份的标签，格式为string。
 
 # 二、Maven Dependency
 Apollo的客户端jar包已经上传到中央仓库，应用在实际使用时只需要按照如下方式引入即可。

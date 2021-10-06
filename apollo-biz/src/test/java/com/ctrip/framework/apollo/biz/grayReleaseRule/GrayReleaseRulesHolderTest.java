@@ -101,7 +101,9 @@ public class GrayReleaseRulesHolderTest {
     grayReleaseRulesHolder.afterPropertiesSet();
 
     assertEquals(someReleaseId, grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
-        (someClientAppId, someClientIp, someClientLabel, someAppId, someClusterName, someNamespaceName));
+        (someClientAppId, someClientIp, anotherClientLabel, someAppId, someClusterName, someNamespaceName));
+    assertEquals(someReleaseId, grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
+        (someClientAppId, anotherClientIp, someClientLabel, someAppId, someClusterName, someNamespaceName));
     assertEquals(someReleaseId, grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
         (someClientAppId.toUpperCase(), someClientIp, someClientLabel, someAppId.toUpperCase(), someClusterName, someNamespaceName.toUpperCase()));
     assertNull(grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule(someClientAppId,
@@ -128,7 +130,7 @@ public class GrayReleaseRulesHolderTest {
 
     GrayReleaseRule anotherRule = assembleGrayReleaseRule(someAppId, someClusterName,
         someNamespaceName, Lists.newArrayList(assembleRuleItem(anotherClientAppId, Sets.newHashSet
-            (anotherClientIp),Sets.newHashSet(someClientLabel))), someReleaseId, activeBranchStatus);
+            (anotherClientIp),Sets.newHashSet(anotherClientLabel))), someReleaseId, activeBranchStatus);
 
     when(grayReleaseRuleRepository.findByAppIdAndClusterNameAndNamespaceName(someAppId,
         someClusterName, someNamespaceName)).thenReturn(Lists.newArrayList(anotherRule));
@@ -140,7 +142,12 @@ public class GrayReleaseRulesHolderTest {
     assertNull(grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
         (someClientAppId, someClientIp, someClientLabel, someAppId, someClusterName, someNamespaceName));
     assertEquals(someReleaseId, grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
+        (anotherClientAppId, anotherClientIp, someClientLabel, someAppId, someClusterName, someNamespaceName));
+    assertEquals(someReleaseId, grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
+        (anotherClientAppId, someClientIp, anotherClientLabel, someAppId, someClusterName, someNamespaceName));
+    assertEquals(someReleaseId, grayReleaseRulesHolder.findReleaseIdFromGrayReleaseRule
         (anotherClientAppId, anotherClientIp, anotherClientLabel, someAppId, someClusterName, someNamespaceName));
+
 
     assertFalse(grayReleaseRulesHolder.hasGrayReleaseRule(someClientAppId, someClientIp,
         someNamespaceName));

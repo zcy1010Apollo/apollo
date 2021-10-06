@@ -75,6 +75,6 @@ public class GrayReleaseRuleItemDTO {
   public String toString() {
     return toStringHelper(this).add("clientAppId", clientAppId)
         .add("clientIpList", clientIpList)
-        .add("clientLabelList",clientLabelList).toString();
+        .add("clientLabelList", clientLabelList).toString();
   }
 }

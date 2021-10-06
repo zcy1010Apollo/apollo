@@ -109,7 +109,7 @@ public class ConfigControllerTest {
 
   @Test
   public void testQueryConfig() throws Exception {
-    String someClientSideReleaseKey = "4";
+    String someClientSideReleaseKey = "1";
     String someServerSideNewReleaseKey = "2";
     HttpServletResponse someResponse = mock(HttpServletResponse.class);
 

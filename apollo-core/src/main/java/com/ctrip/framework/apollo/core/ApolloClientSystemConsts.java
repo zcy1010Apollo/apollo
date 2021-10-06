@@ -29,7 +29,7 @@ public class ApolloClientSystemConsts {
   /**
    * apollo client app label
    */
-  public static final String APP_LABEL = "app.label";
+  public static final String APOLLO_LABEL = "apollo.label";
 
   /**
    * apollo client app id environment variables
@@ -39,7 +39,7 @@ public class ApolloClientSystemConsts {
   /**
    * apollo client app label environment variables
    */
-  public static final String APP_LABEL_ENVIRONMENT_VARIABLES = "APP_LABEL";
+  public static final String APOLLO_LABEL_ENVIRONMENT_VARIABLES = "APOLLO_LABEL";
 
   /**
    * cluster name

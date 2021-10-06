@@ -149,7 +149,7 @@ public class DefaultApplicationProvider implements ApplicationProvider {
 
   private void initAppLabel() {
     // 1. Get app.label from System Property
-    m_appLabel = System.getProperty(ApolloClientSystemConsts.APP_LABEL);
+    m_appLabel = System.getProperty(ApolloClientSystemConsts.APOLLO_LABEL);
     if (!Utils.isBlank(m_appLabel)) {
       m_appLabel = m_appLabel.trim();
       logger.info("App Label is set to {} by app.label property from System Property", m_appLabel);
@@ -157,7 +157,7 @@ public class DefaultApplicationProvider implements ApplicationProvider {
     }
 
     //2. Try to get app label from OS environment variable
-    m_appLabel = System.getenv(ApolloClientSystemConsts.APP_LABEL_ENVIRONMENT_VARIABLES);
+    m_appLabel = System.getenv(ApolloClientSystemConsts.APOLLO_LABEL_ENVIRONMENT_VARIABLES);
     if (!Utils.isBlank(m_appLabel)) {
       m_appLabel = m_appLabel.trim();
       logger.info("App Label is set to {} by APP_LABEL property from OS environment variable", m_appLabel);
@@ -165,7 +165,7 @@ public class DefaultApplicationProvider implements ApplicationProvider {
     }
 
     // 3. Try to get app label from app.properties.
-    m_appLabel = m_appProperties.getProperty(ApolloClientSystemConsts.APP_LABEL);
+    m_appLabel = m_appProperties.getProperty(ApolloClientSystemConsts.APOLLO_LABEL);
     if (!Utils.isBlank(m_appLabel)) {
       m_appLabel = m_appLabel.trim();
       logger.info("App Label is set to {} by app.label property from {}", m_appLabel,

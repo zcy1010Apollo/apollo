@@ -45,7 +45,7 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                     var branch = context.branch;
                     scope.branch = branch;
 
-                    if (branch.editingRuleItem.clientIpList && branch.editingRuleItem.clientIpList[0] == '*') {
+                    if (branch.editingRuleItem.clientIpList && branch.editingRuleItem.clientIpList[0] == '*' && branch.editingRuleItem.clientLabelList && branch.editingRuleItem.clientLabelList[0] == '*') {
                         branch.editingRuleItem.ApplyToAllInstances = true;
                     } else {
                         branch.editingRuleItem.ApplyToAllInstances = false;
