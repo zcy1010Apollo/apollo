@@ -39,8 +39,8 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
             scope.completeEditItem = completeEditItem;
             scope.cancelEditItem = cancelEditItem;
             scope.initSelectIps = initSelectIps;
-            scope.changApplyToAllInstancesToTrue = changApplyToAllInstancesToTrue;
-            scope.changApplyToAllInstancesToFalse = changApplyToAllInstancesToFalse;
+            scope.changeApplyToAllInstancesToTrue = changeApplyToAllInstancesToTrue;
+            scope.changeApplyToAllInstancesToFalse = changeApplyToAllInstancesToFalse;
 
             EventManager.subscribe(EventManager.EventType.EDIT_GRAY_RELEASE_RULES,
                 function (context) {
@@ -66,11 +66,11 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
                 addRules(scope.branch);
             });
 
-            function changApplyToAllInstancesToTrue(branch) {
+            function changeApplyToAllInstancesToTrue(branch) {
                 branch.editingRuleItem.ApplyToAllInstances = true;
             }
 
-            function changApplyToAllInstancesToFalse(branch) {
+            function changeApplyToAllInstancesToFalse(branch) {
                 branch.editingRuleItem.ApplyToAllInstances = false;
                 if (branch.editingRuleItem.draftIpList[0] == '*') {
                     branch.editingRuleItem.draftIpList = [];

@@ -45,13 +45,13 @@
                         <label class="form-control-static radio-inline">
                             <input type="radio" name="ApplyToAllInstances" value="false"
                                    ng-checked="!branch.editingRuleItem.ApplyToAllInstances"
-                                   ng-click="changApplyToAllInstancesToFalse(branch)">
+                                   ng-click="changeApplyToAllInstancesToFalse(branch)">
                             {{'Component.GrayscalePublishRule.AcceptPartInstance' | translate }}
                         </label>
                         <label class="form-control-static radio-inline">
                             <input type="radio" name="ApplyToAllInstances" value="true"
                                    ng-checked="branch.editingRuleItem.ApplyToAllInstances"
-                                   ng-click="changApplyToAllInstancesToTrue(branch)">
+                                   ng-click="changeApplyToAllInstancesToTrue(branch)">
                             {{'Component.GrayscalePublishRule.AcceptAllInstance' | translate }}
                         </label>
                     </div>
