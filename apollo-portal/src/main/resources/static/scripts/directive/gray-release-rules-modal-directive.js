@@ -39,6 +39,8 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
             scope.completeEditItem = completeEditItem;
             scope.cancelEditItem = cancelEditItem;
             scope.initSelectIps = initSelectIps;
+            scope.changApplyToAllInstancesToTrue = changApplyToAllInstancesToTrue;
+            scope.changApplyToAllInstancesToFalse = changApplyToAllInstancesToFalse;
 
             EventManager.subscribe(EventManager.EventType.EDIT_GRAY_RELEASE_RULES,
                 function (context) {
@@ -63,6 +65,20 @@ function rulesModalDirective($translate, toastr, AppUtil, EventManager, Instance
             $('.rules-ip-selector').on('select2:select', function () {
                 addRules(scope.branch);
             });
+
+            function changApplyToAllInstancesToTrue(branch) {
+                branch.editingRuleItem.ApplyToAllInstances = true;
+            }
+
+            function changApplyToAllInstancesToFalse(branch) {
+                branch.editingRuleItem.ApplyToAllInstances = false;
+                if (branch.editingRuleItem.draftIpList[0] == '*') {
+                    branch.editingRuleItem.draftIpList = [];
+                }
+                if (branch.editingRuleItem.draftLabelList[0] == '*') {
+                    branch.editingRuleItem.draftLabelList = [];
+                }
+            }
 
             function addRules(branch) {
                 var newRules, selector = $('.rules-ip-selector');

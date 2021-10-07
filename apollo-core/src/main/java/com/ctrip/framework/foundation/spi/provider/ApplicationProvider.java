@@ -30,7 +30,7 @@ public interface ApplicationProvider extends Provider {
   /**
    * @return the application's app label
    */
-  String getAppLabel();
+  String getApolloLabel();
 
   /**
    * @return the application's access key secret

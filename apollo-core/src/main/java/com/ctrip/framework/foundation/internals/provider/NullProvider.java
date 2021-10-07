@@ -45,7 +45,7 @@ public class NullProvider implements ApplicationProvider, NetworkProvider, Serve
   }
 
   @Override
-  public String getAppLabel() {
+  public String getApolloLabel() {
     return null;
   }
 

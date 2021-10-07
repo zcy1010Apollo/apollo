@@ -90,12 +90,12 @@ public class ConfigUtil {
   }
 
   /**
-   * Get the app label for the current application.
+   * Get the apollo label for the current application.
    *
-   * @return the app label or ConfigConsts.NO_APPLABEL_PLACEHOLDER if app label is not available
+   * @return apollo Label
    */
-  public String getAppLabel() {
-    return Foundation.app().getAppLabel();
+  public String getApolloLabel() {
+    return Foundation.app().getApolloLabel();
   }
 
   /**

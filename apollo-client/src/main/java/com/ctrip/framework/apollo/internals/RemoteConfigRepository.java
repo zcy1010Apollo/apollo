@@ -38,7 +38,6 @@ import com.ctrip.framework.apollo.util.ExceptionUtil;
 import com.ctrip.framework.apollo.util.http.HttpRequest;
 import com.ctrip.framework.apollo.util.http.HttpResponse;
 import com.ctrip.framework.apollo.util.http.HttpClient;
-import com.ctrip.framework.foundation.Foundation;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -311,7 +310,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
       queryParams.put("ip", queryParamEscaper.escape(localIp));
     }
 
-    String label = m_configUtil.getAppLabel();
+    String label = m_configUtil.getApolloLabel();
     if (!Strings.isNullOrEmpty(label)) {
       queryParams.put("label", queryParamEscaper.escape(label));
     }

@@ -45,13 +45,13 @@
                         <label class="form-control-static radio-inline">
                             <input type="radio" name="ApplyToAllInstances" value="false"
                                    ng-checked="!branch.editingRuleItem.ApplyToAllInstances"
-                                   ng-click="branch.editingRuleItem.ApplyToAllInstances = false">
+                                   ng-click="changApplyToAllInstancesToFalse(branch)">
                             {{'Component.GrayscalePublishRule.AcceptPartInstance' | translate }}
                         </label>
                         <label class="form-control-static radio-inline">
                             <input type="radio" name="ApplyToAllInstances" value="true"
                                    ng-checked="branch.editingRuleItem.ApplyToAllInstances"
-                                   ng-click="branch.editingRuleItem.ApplyToAllInstances = true">
+                                   ng-click="changApplyToAllInstancesToTrue(branch)">
                             {{'Component.GrayscalePublishRule.AcceptAllInstance' | translate }}
                         </label>
                     </div>
@@ -92,7 +92,8 @@
                 </div>
                 <div class="form-group" ng-show="!branch.editingRuleItem.ApplyToAllInstances">
                     <div class="col-md-offset-1 col-md-10 item-container">
-                        <section class="btn-group item-info" ng-repeat="ip in branch.editingRuleItem.draftIpList">
+                        <section class="btn-group item-info"
+                                 ng-repeat="ip in branch.editingRuleItem.draftIpList">
                             <button type="button" class="btn btn-default" ng-bind="ip"></button>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                     ng-click="removeRule(branch.editingRuleItem, ip)">
@@ -122,7 +123,8 @@
 
                 <div class="form-group" ng-show="!branch.editingRuleItem.ApplyToAllInstances">
                     <div class="col-md-offset-1 col-md-10 item-container">
-                        <section class="btn-group item-info" ng-repeat="label in branch.editingRuleItem.draftLabelList">
+                        <section class="btn-group item-info"
+                                 ng-repeat="label in branch.editingRuleItem.draftLabelList">
                             <button type="button" class="btn btn-default" ng-bind="label"></button>
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                     ng-click="removeRuleLabel(branch.editingRuleItem, label)">

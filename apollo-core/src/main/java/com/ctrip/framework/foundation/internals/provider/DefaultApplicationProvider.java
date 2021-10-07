@@ -81,7 +81,7 @@ public class DefaultApplicationProvider implements ApplicationProvider {
   }
 
   @Override
-  public String getAppLabel() {
+  public String getApolloLabel() {
     return m_appLabel;
   }
 
