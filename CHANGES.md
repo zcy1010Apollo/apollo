@@ -18,6 +18,7 @@ Apollo 1.10.0
 * [Support search by item](https://github.com/apolloconfig/apollo/pull/3977)
 * [Implement password policies to avoid weak passwords](https://github.com/apolloconfig/apollo/pull/4008)
 * [Extend the gray release capability to support dimensions other than IP](https://github.com/apolloconfig/apollo/pull/4013)
+* [public namespace basic function](https://github.com/apolloconfig/apollo/pull/3850)
 
 ------------------
 All issues and pull requests are [here](https://github.com/ctripcorp/apollo/milestone/8?closed=1)
